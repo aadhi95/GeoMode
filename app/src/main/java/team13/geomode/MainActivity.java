@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
     public void usecurloc(View v){
         Intent i=new Intent(this,MapsActivity.class);
+        i.putExtra("lat",l.getLatitude());
+        i.putExtra("lon",l.getLongitude());
         startActivity(i);
         //hello
         //world
