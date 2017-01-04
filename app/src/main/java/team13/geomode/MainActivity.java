@@ -21,6 +21,5 @@ public class MainActivity extends AppCompatActivity {
     public void usegmap(View v)
     {
 
-
     }
 }
