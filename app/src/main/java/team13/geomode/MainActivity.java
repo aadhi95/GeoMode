@@ -18,4 +18,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
         //hello
     }
+    public void usegmap(View v)
+    {
+
+
+    }
 }
