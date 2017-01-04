@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i=new Intent(this,MapsActivity.class);
         startActivity(i);
         //hello
+        //world
     }
     public void usegmap(View v)
     {
