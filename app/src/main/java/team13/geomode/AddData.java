@@ -43,7 +43,7 @@ public class AddData extends AppCompatActivity implements AdapterView.OnItemSele
             arr = d1.getModes();
             Log.i("adddata", "created");
             s1 = (Spinner) findViewById(R.id.mode_spin);
-            ArrayAdapter ad = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arr);
+            ArrayAdapter ad = new ArrayAdapter(this, R.layout.spin, arr);
             ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             s1.setAdapter(ad);
             s1.setOnItemSelectedListener(this);

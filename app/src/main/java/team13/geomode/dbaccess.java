@@ -27,6 +27,8 @@ public class dbaccess {
     }
 
     public void addmode(String modename, String ringer_volume, String w_state, String alrm_vol, String med_vol) {
+        int max_r = Integer.parseInt(ringer_volume), max_al = Integer.parseInt(alrm_vol), max_med = Integer.parseInt(med_vol);
+        if (max_r >= 0 && max_r < 8 && max_al >= 0 && max_al < 8 && max_med >= 0 && max_med < 16)
         db.execSQL("insert or ignore into modetab values('" + modename + "','" + ringer_volume + "','" + w_state + "','" + alrm_vol + "','" + med_vol + "')");
     }
 
@@ -34,15 +36,20 @@ public class dbaccess {
         db.execSQL("insert or ignore into coordtab values('" + lat + "','" + longi + "','" + rad + "','" + mode + "')");
     }
 
-    public String getCoordMode(Double lat, Double longi) {
-        Cursor c = db.rawQuery("Select * from corrdtab", null);
+    public String[] getCoordMode(Double lat, Double longi) {
+        Cursor c = db.rawQuery("Select * from coordtab", null);
         String mode = null;
         while (c.moveToNext()) {
             if (CalculationByDistance(new LatLng(lat, longi), new LatLng(Double.parseDouble(c.getString(c.getColumnIndex("lat"))), Double.parseDouble(c.getString(c.getColumnIndex("longi"))))) < Double.parseDouble(c.getString(c.getColumnIndex("radius")))) {
                 mode = c.getString(c.getColumnIndex("mode"));
             }
         }
-        return mode;
+        Cursor c1 = db.rawQuery("Select * from modetab where mode_nm=?", new String[]{mode});
+        if (c1.moveToFirst()) {
+            String[] attr = new String[]{c1.getString(c1.getColumnIndex("mode_nm")), c1.getString(c1.getColumnIndex("wifi_state")), c1.getString(c1.getColumnIndex("ringr_vol")), c1.getString(c1.getColumnIndex("alarm_vol")), c1.getString(c1.getColumnIndex("media_vol"))};
+            return attr;
+        }
+        return null;
     }
 
     public String[] getModes() {

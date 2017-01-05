@@ -27,7 +27,7 @@ public class Main2Activity extends AppCompatActivity implements
         GoogleMap.OnMyLocationButtonClickListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback, GoogleMap.OnMapClickListener {
-    final private int tm = 1;
+
     protected LocationManager locationManager;
     protected Context context;
     LocationManager lm;
