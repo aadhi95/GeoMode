@@ -1,46 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/activity_add_data"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="team13.geomode.MainActivity">
+    tools:context="team13.geomode.AddData">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <Button
-            android:id="@+id/b1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="usecurloc"
-            android:text="Use Current Location" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="usegmap"
-            android:text="Use Google Maps" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="check"
-            android:text="Add a new Mode" />
 
-        <Button
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="startser"
-            android:text="Start Service" />
+            android:text="Latitude"
+            android:textSize="25dp" />
 
-        <Button
+        <TextView
+            android:id="@+id/lat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="stopser"
-            android:text="Stop Service" />
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Longitude"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/lon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Radius"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/rad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp" />
+
+        <Spinner
+            android:id="@+id/mode_spin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="addcoord"
+        android:text="Add Coordinate" />
+
 </RelativeLayout>

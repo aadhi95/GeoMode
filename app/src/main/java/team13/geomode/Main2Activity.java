@@ -1,6 +1,7 @@
 package team13.geomode;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -92,8 +93,13 @@ public class Main2Activity extends AppCompatActivity implements
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         updatemap();
-        mMap.setOnMapClickListener(this);
+        while (l == null) {
+        }
+        LatLng ll = new LatLng(l.getLatitude(), l.getLongitude());
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ll));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+        mMap.setOnMapClickListener(this);
+
     }
 
     @Override
@@ -126,7 +132,7 @@ public class Main2Activity extends AppCompatActivity implements
         if (l != null) {
             LatLng ll = new LatLng(l.getLatitude(), l.getLongitude());
             mMap.addMarker(new MarkerOptions().position(ll).title("Current Location"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(ll));
+
         } else {
             Toast.makeText(this, "Current Location not Known", Toast.LENGTH_SHORT).show();
             return;
@@ -137,8 +143,21 @@ public class Main2Activity extends AppCompatActivity implements
     }
 
     public void acpt(View v) {
+        if (l != null && rad != null) {
         Double radus = CalculationByDistance(new LatLng(l.getLatitude(), l.getLongitude()), rad);
+            Intent i = new Intent(this, AddData.class);
+            i.putExtra("latitude", l.getLatitude() + "");
+            i.putExtra("longitude", l.getLongitude() + "");
+            i.putExtra("radius", radus + "");
+            startActivityForResult(i, 11);
+        } else {
+            Toast.makeText(this, "please check if radius is selected and your current location is shown", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        finish();
     }
 
     public double CalculationByDistance(LatLng StartP, LatLng EndP) {
