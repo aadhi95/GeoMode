@@ -15,27 +15,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <Button
+            android:id="@+id/b1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Use Current Location"
             android:onClick="usecurloc"
-            android:id="@+id/b1"/>
+            android:text="Use Current Location" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Use Google Maps"
-            android:onClick="usegmap"/>
+            android:onClick="usegmap"
+            android:text="Use Google Maps" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="check location and change"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/t1"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/t2"/>
+
     </LinearLayout>
 </RelativeLayout>
