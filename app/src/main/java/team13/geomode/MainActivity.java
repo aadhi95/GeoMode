@@ -1,6 +1,8 @@
 package team13.geomode;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,11 +18,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void usecurloc(View v){
-        Intent i=new Intent(this,MapsActivity.class);
+        Intent i = new Intent(this, Main2Activity.class);
         startActivity(i);
     }
     public void usegmap(View v)
     {
+
+
+    }
+
+    public void check(View v) {
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 
 
     }
