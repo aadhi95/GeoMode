@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,13 +20,14 @@ public class AddData extends AppCompatActivity implements AdapterView.OnItemSele
     String[] arr;
     dbaccess d1;
     Spinner s1;
-
+    EditText e1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_data);
         Log.i("adddata", "radius");
         try {
+            e1 = (EditText) findViewById(R.id.cnm);
             db = openOrCreateDatabase("geomode", Context.MODE_PRIVATE, null);
             Log.i("adddata", "dbopened");
             Intent i = getIntent();
@@ -63,14 +65,16 @@ public class AddData extends AppCompatActivity implements AdapterView.OnItemSele
     }
 
     public void addcoord(View v) {
-        if (mod != null && d1 != null) {
+
+        if (mod != null && d1 != null && !e1.getText().toString().equals("")) {
             try {
-                d1.addcoord(lat, lon, rad, mod);
-                Toast.makeText(this, "row addded", Toast.LENGTH_LONG).show();
+                d1.addcoord(e1.getText().toString(), lat, lon, rad, mod);
+                Toast.makeText(this, "row added", Toast.LENGTH_LONG).show();
             } catch (Exception ex) {
                 Toast.makeText(this, ex.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
+        db.close();
         setResult(12, null);
         finish();
     }

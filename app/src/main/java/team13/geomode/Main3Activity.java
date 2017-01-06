@@ -1,6 +1,7 @@
 package team13.geomode;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -88,6 +90,9 @@ public class Main3Activity extends AppCompatActivity implements GoogleMap.OnMyLo
         if (radius != null) {
             mMap.addMarker(new MarkerOptions().position(radius).title("Radius"));
         }
+        if (center != null && radius != null) {
+            drawCircle();
+        }
     }
 
     public double CalculationByDistance(LatLng StartP, LatLng EndP) {
@@ -110,5 +115,30 @@ public class Main3Activity extends AppCompatActivity implements GoogleMap.OnMyLo
         double meter = valueResult * 1000;
         int meterInDec = Integer.valueOf(newFormat.format(meter));
         return meter;
+    }
+
+    private void drawCircle() {
+
+        // Instantiating CircleOptions to draw a circle around the marker
+        CircleOptions circleOptions = new CircleOptions();
+
+        // Specifying the center of the circle
+        circleOptions.center(center);
+
+        // Radius of the circle
+        circleOptions.radius(CalculationByDistance(center, radius));
+
+        // Border color of the circle
+        circleOptions.strokeColor(Color.RED);
+
+        // Fill color of the circle
+        circleOptions.fillColor(0x30ff0000);
+
+        // Border width of the circle
+        circleOptions.strokeWidth(2);
+
+        // Adding the circle to the GoogleMap
+        mMap.addCircle(circleOptions);
+
     }
 }

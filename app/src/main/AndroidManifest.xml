@@ -3,10 +3,11 @@
     package="team13.geomode">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCAsTION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +15,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,19 +41,15 @@
         <activity android:name=".Main3Activity" />
         <activity android:name=".AddData" />
         <activity android:name=".Main4Activity" />
-        <activity
-            android:name=".NotificationView"
-            android:label="Details of notification"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-
         <service
-            android:name=".LocationService"
+            android:name=".LocSer"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="team13.geomode.MainActivity" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package team13.geomode;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -30,10 +32,10 @@ public class Main2Activity extends AppCompatActivity implements
 
     protected LocationManager locationManager;
     protected Context context;
-    LocationManager lm;
+
     String provider;
     Location l;
-    private LatLng rad;
+    LatLng rad, cener;
     private GoogleMap mMap;
 
     @Override
@@ -43,23 +45,25 @@ public class Main2Activity extends AppCompatActivity implements
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, 11);
+            //ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, 11);
         }
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-        lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         Criteria c = new Criteria();
         locationManager.requestLocationUpdates(1, 1, c, this, null);
-        provider = lm.getBestProvider(c, true);
+        provider = locationManager.getBestProvider(c, true);
         //Toast.makeText(this, provider, Toast.LENGTH_SHORT).show();
-        l = lm.getLastKnownLocation(provider);
+        l = locationManager.getLastKnownLocation(provider);
+        cener = new LatLng(l.getLatitude(), l.getLongitude());
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
         l = location;
+        cener = new LatLng(l.getLatitude(), l.getLongitude());
         updatemap();
     }
 
@@ -92,10 +96,11 @@ public class Main2Activity extends AppCompatActivity implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        updatemap();
         while (l == null) {
         }
         LatLng ll = new LatLng(l.getLatitude(), l.getLongitude());
+        cener = new LatLng(l.getLatitude(), l.getLongitude());
+        updatemap();
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ll));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
         mMap.setOnMapClickListener(this);
@@ -140,6 +145,9 @@ public class Main2Activity extends AppCompatActivity implements
         if (rad != null) {
             mMap.addMarker(new MarkerOptions().position(rad).title("Radius Location"));
         }
+        if (rad != null && cener != null) {
+            drawCircle();
+        }
     }
 
     public void acpt(View v) {
@@ -180,5 +188,30 @@ public class Main2Activity extends AppCompatActivity implements
         double meter = valueResult * 1000;
         int meterInDec = Integer.valueOf(newFormat.format(meter));
         return meter;
+    }
+
+    private void drawCircle() {
+
+        // Instantiating CircleOptions to draw a circle around the marker
+        CircleOptions circleOptions = new CircleOptions();
+
+        // Specifying the center of the circle
+        circleOptions.center(cener);
+
+        // Radius of the circle
+        circleOptions.radius(CalculationByDistance(cener, rad));
+
+        // Border color of the circle
+        circleOptions.strokeColor(Color.RED);
+
+        // Fill color of the circle
+        circleOptions.fillColor(0x30ff0000);
+
+        // Border width of the circle
+        circleOptions.strokeWidth(2);
+
+        // Adding the circle to the GoogleMap
+        mMap.addCircle(circleOptions);
+
     }
 }
