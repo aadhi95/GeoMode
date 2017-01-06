@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     Intent i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        i = new Intent(MainActivity.this, LocSer.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         th = false;
@@ -75,13 +74,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startser(View v) {
+        i = new Intent(MainActivity.this, LocSer.class);
         i.setAction("start");
         startService(i);
 
     }
 
     public void stopser(View v) {
-
+        i = new Intent(MainActivity.this, LocSer.class);
         i.setAction("stop");
         stopService(i);
 
