@@ -25,6 +25,9 @@ public class AddData extends AppCompatActivity implements AdapterView.OnItemSele
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_data);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.hope);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         Log.i("adddata", "radius");
         try {
             e1 = (EditText) findViewById(R.id.cnm);

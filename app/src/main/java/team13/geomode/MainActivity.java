@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.hope);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         th = false;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.VIBRATE}, 11);
@@ -87,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void vall(View v) {
+        Intent i1 = new Intent(this, VIewAll.class);
+        startActivity(i1);
+    }
 
 
 

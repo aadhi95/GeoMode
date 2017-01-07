@@ -71,7 +71,7 @@ public class LocSer extends Service implements LocationListener {
                 .setSmallIcon(R.drawable.c)
                 .setContentTitle("GeoMode Enabled")
                 .setContentIntent(pma)
-                .setContentText(s1.getString("mode", "fullnoise"))
+                .setContentText(s1.getString("mode", "Full Sound"))
                 .build();
         startForeground(11, n);
         Log.i("adas", "Service onStartCommand");

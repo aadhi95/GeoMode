@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/e"
+    android:background="@drawable/back2"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,36 +12,67 @@
     tools:context="team13.geomode.MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical">
         <Button
             android:id="@+id/b1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="#12d1b1"
             android:onClick="usecurloc"
+            android:padding="10dp"
             android:text="Use Current Location" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="#12d1b1"
             android:onClick="usegmap"
+            android:padding="10dp"
             android:text="Use Google Maps" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="#12d1b1"
             android:onClick="check"
+            android:padding="10dp"
             android:text="Add a new Mode" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="#12d1b1"
+            android:onClick="vall"
+            android:padding="10dp"
+            android:text="View All regions" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="#12d1b1"
             android:onClick="startser"
+            android:padding="10dp"
             android:text="Start Service" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="#12d1b1"
             android:onClick="stopser"
+            android:padding="10dp"
             android:text="Stop Service" />
     </LinearLayout>
 </RelativeLayout>

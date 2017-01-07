@@ -11,8 +11,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/c"
         android:label="@string/app_name"
+        android:logo="@drawable/c"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -41,6 +42,7 @@
         <activity android:name=".Main3Activity" />
         <activity android:name=".AddData" />
         <activity android:name=".Main4Activity" />
+
         <service
             android:name=".LocSer"
             android:enabled="true"
@@ -50,6 +52,8 @@
                 <action android:name="team13.geomode.MainActivity" />
             </intent-filter>
         </service>
+
+        <activity android:name=".VIewAll"></activity>
     </application>
 
 </manifest>

@@ -42,6 +42,9 @@ public class Main2Activity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.hope);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
@@ -56,7 +59,6 @@ public class Main2Activity extends AppCompatActivity implements
         provider = locationManager.getBestProvider(c, true);
         //Toast.makeText(this, provider, Toast.LENGTH_SHORT).show();
         l = locationManager.getLastKnownLocation(provider);
-        cener = new LatLng(l.getLatitude(), l.getLongitude());
 
     }
 

@@ -4,87 +4,115 @@
     android:id="@+id/activity_main4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/g"
+    android:background="@drawable/back3"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="team13.geomode.Main4Activity">
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:columnCount="2"
+        android:rowCount="5">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="0"
             android:text="Mode Name:"
+            android:textColor="#000000"
             android:textSize="25dp" />
 
         <EditText
+
             android:id="@+id/mode_nm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="0"
             android:inputType="text"
+            android:textColor="#000000"
             android:textSize="25dp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
             android:text="Wifi State:"
+            android:textColor="#000000"
             android:textSize="25dp" />
 
-        <Spinner
-            android:id="@+id/wifi_spin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></Spinner>
+        <Switch
+            android:id="@+id/tog"
+            android:layout_column="1"
+            android:layout_row="1" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
             android:text="Ringer Volume:"
+            android:textColor="#000000"
             android:textSize="25dp" />
 
         <EditText
             android:id="@+id/rngr_vol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="2"
             android:inputType="number"
+            android:textColor="#000000"
             android:textSize="25dp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="3"
             android:text="Media Volume:"
+            android:textColor="#000000"
             android:textSize="25dp" />
 
         <EditText
             android:id="@+id/media_vol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="3"
             android:inputType="number"
+            android:textColor="#000000"
             android:textSize="25dp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="4"
             android:text="Alarm Volume:"
+            android:textColor="#000000"
             android:textSize="25dp" />
 
         <EditText
             android:id="@+id/alr_vol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="4"
             android:inputType="number"
+            android:textColor="#000000"
             android:textSize="25dp" />
-    </LinearLayout>
+    </GridLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:onClick="addmd"
-        android:text="Add mode"
-        android:textSize="25dp" />
+        android:text="Add mode" />
 </RelativeLayout>

@@ -20,14 +20,17 @@ public class dbaccess {
     private void init() {
         db.execSQL("create table if not exists modetab(mode_nm text primary key,ringr_vol text not null,wifi_state text not null,alarm_vol text not null,media_vol text not null)");
         db.execSQL("create table if not exists coordtab(coord_nm text not null,lat text not null,longi text not null,radius text not null,mode text not null ,FOREIGN KEY(mode) REFERENCES modetab(mode_nm))");
-        db.execSQL("insert or ignore into modetab values('lownoise','2','0','2','2')");
-        db.execSQL("insert or ignore into modetab values('fullsound','7','on','7','15')");
+        db.execSQL("insert or ignore into modetab values('Full Sound','7','on','7','15')");
     }
 
-    public void addmode(String modename, String ringer_volume, String w_state, String alrm_vol, String med_vol) {
+    public int addmode(String modename, String ringer_volume, String w_state, String alrm_vol, String med_vol) {
         int max_r = Integer.parseInt(ringer_volume), max_al = Integer.parseInt(alrm_vol), max_med = Integer.parseInt(med_vol);
-        if (max_r >= 0 && max_r < 8 && max_al >= 0 && max_al < 8 && max_med >= 0 && max_med < 16)
+        if (max_r >= 0 && max_r < 8 && max_al >= 0 && max_al < 8 && max_med >= 0 && max_med < 16) {
         db.execSQL("insert or ignore into modetab values('" + modename + "','" + ringer_volume + "','" + w_state + "','" + alrm_vol + "','" + med_vol + "')");
+            return 1;
+        } else
+            return 0;
+
     }
 
     public void addcoord(String nm, String lat, String longi, String rad, String mode) {
@@ -36,7 +39,7 @@ public class dbaccess {
 
     public String[] getCoordMode(Double lat, Double longi) {
         Cursor c = db.rawQuery("Select * from coordtab", null);
-        String mode = "fullsound", place = null;
+        String mode = "Full Sound", place = null;
         while (c.moveToNext()) {
             if (CalculationByDistance(new LatLng(lat, longi), new LatLng(Double.parseDouble(c.getString(c.getColumnIndex("lat"))), Double.parseDouble(c.getString(c.getColumnIndex("longi"))))) < Double.parseDouble(c.getString(c.getColumnIndex("radius")))) {
                 mode = c.getString(c.getColumnIndex("mode"));
